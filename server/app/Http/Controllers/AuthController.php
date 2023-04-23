@@ -13,7 +13,7 @@ class AuthController extends Controller
 
         if (auth()->attempt($credentials)) {
             $token = auth()->user()->createToken('auth_token');
-            $response = ['token' => $token];
+            $response = ['token' => $token->plainTextToken];
             return response($response, 200);
         } else {
             $response = "Email or password is wrong!";
