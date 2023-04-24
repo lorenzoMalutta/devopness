@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import PersonIcon from '@mui/icons-material/Person';
 import api from '../../service/api';
 import { useState } from 'react';
+import { useAuthStore } from '../../hook/zustand';
 
 const LoginBox = styled(Box)({
     display: 'flex',
@@ -33,6 +34,8 @@ const GridStyle = ({
 });
 
 export function Login() {
+    const setToken = useAuthStore(state => state.setToken);
+    const setId = useAuthStore(state => state.setId);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -44,9 +47,11 @@ export function Login() {
                 email,
                 password
             });
-
-            console.log(response.data.token);
-            localStorage.setItem('token', response.data.token);
+            console.log(response.data);
+            const { token } = response.data;
+            const { id } = response.data.user;
+            setId(id);
+            setToken(token);
         } catch (error) {
             console.log(error);
         }
