@@ -22,6 +22,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "react-router-guarded-routes": "^0.4.5",
+    "react-toastify": "^9.1.2",
     "zustand": "^4.3.7"
   },
   "devDependencies": {
