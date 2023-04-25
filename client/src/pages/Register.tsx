@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import PersonIcon from '@mui/icons-material/Person';
 import api from '../../service/api';
 import { useState } from 'react';
-import { useAuthStore } from '../../hook/zustand';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -45,7 +44,7 @@ export function Register() {
     const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
         try {
-            const response = await api.post('/register', {
+            await api.post('/register', {
                 email,
                 password,
                 name
