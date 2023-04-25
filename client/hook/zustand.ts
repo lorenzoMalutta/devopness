@@ -18,15 +18,15 @@ export const useAuthStore = create(persist<State & Actions>(
         token: "",
         isAuth: false,
         id: 0,
-        setId: (id: number) => set((state) => ({
+        setId: (id: number) => set(() => ({
             id,
             isAuth: true,
         })),
-        setToken: (token: string) => set((state) => ({
+        setToken: (token: string) => set(() => ({
             token,
             isAuth: true,
         })),
-        logout: () => set(state => ({
+        logout: () => set(() => ({
             token: "",
             isAuth: false,
             id: 0,
