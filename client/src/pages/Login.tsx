@@ -4,6 +4,9 @@ import PersonIcon from '@mui/icons-material/Person';
 import api from '../../service/api';
 import { useState } from 'react';
 import { useAuthStore } from '../../hook/zustand';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginBox = styled(Box)({
     display: 'flex',
@@ -39,6 +42,7 @@ export function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
@@ -52,6 +56,8 @@ export function Login() {
             const { id } = response.data.user;
             setId(id);
             setToken(token);
+            toast.success('Login realizado com sucesso!');
+            navigate('/Todo');
         } catch (error) {
             console.log(error);
         }
@@ -59,6 +65,7 @@ export function Login() {
 
     return (
         <Grid container spacing={2} sx={GridStyle}>
+            <ToastContainer />
             <LoginBox>
                 <Avatar sx={{ bgcolor: '#1565C0', width: 112, height: 112, zIndex: 1, m: -4 }}>
                     <Icon
